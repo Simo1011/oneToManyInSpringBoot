@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" >
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>Spring Boot</title>
+</head>
+<body>
+ 
+<nav th:insert="/nav :: menu"></nav>
+	<div align="center">
+		<h1>Contact List</h1>
+		<h3>
+		
+		</h3>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="row">No</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Address</th>
+					<th>Telephone</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody class="table-group-divider">
+				<tr th:each="contact : ${contactList}">
+					<td  th:text="${contact.contact_id}" scope="row"></td>
+					<td th:text="${contact.name}"></td>
+					<td th:text="${contact.email}"></td>
+					<td th:text="${contact.address}"></td>
+					<td th:text="${contact.telephone}"></td>
+					<td><a class="btn btn-outline-warning"
+						th:href="@{/editContact/(id=${contact.contact_id})}	">Edit</a> <a
+						class="btn btn-outline-danger"
+						th:href="@{/deleteContact/(id=${contact.contact_id})}	">Delete</a>
+					</td>
+
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+	<div th:insert="/nav :: footer"></div>
+</body>
+</html>
